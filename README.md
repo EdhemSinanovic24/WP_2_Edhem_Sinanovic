@@ -69,7 +69,6 @@ IPI-Akademija/
 
 ---
 
-*Projekat rađen za predmet IPI kroz semestar.*
 
 Ime i prezime: Edhem Sinanovic
 Broj indeksa: I-0131/23
