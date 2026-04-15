@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registracija</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg">
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+    </div>
+
+    <div class="auth-wrap">
+        <div class="card">
+            <div class="header-section">
+                <h1>Kreiraj račun</h1>
+                <p>IPI Akademija · Registracija</p>
+            </div>
+
+            <form (ngSubmit)="submit()" #registerForm="ngForm">
+                <div class="field">
+                    <input
+                        [(ngModel)]="name"
+                        name="name"
+                        required
+                        placeholder=" "
+                        id="name-input"
+                    />
+                    <label for="name-input">Ime i prezime</label>
+                    <div class="field-glow"></div>
+                </div>
+
+                <div class="field">
+                    <input
+                        [(ngModel)]="email"
+                        name="email"
+                        required
+                        placeholder=" "
+                        id="email-input"
+                        type="email"
+                    />
+                    <label for="email-input">Email adresa</label>
+                    <div class="field-glow"></div>
+                </div>
+
+                <div class="field">
+                    <input
+                        type="password"
+                        [(ngModel)]="password"
+                        name="password"
+                        required
+                        placeholder=" "
+                        id="password-input"
+                        (input)="checkPasswordStrength()"
+                    />
+                    <label for="password-input">Lozinka</label>
+                    <div class="field-glow"></div>
+
+                    <div class="password-strength" *ngIf="password.length > 0">
+                        <div class="strength-bar">
+                            <div class="strength-fill" [ngStyle]="{'width.%': passwordStrength}"></div>
+                        </div>
+                        <span class="strength-text">{{ getStrengthText() }}</span>
+                    </div>
+                </div>
+
+                <div class="theme-header">
+                    <i class="fas fa-palette"></i>
+                    <span>Odaberi temu</span>
+                </div>
+
+                <div class="themes">
+                    <div class="theme" [class.active]="theme === 'dark'" (click)="theme = 'dark'">
+                        <div class="theme-icon"><i class="fas fa-moon"></i></div>
+                        <div class="theme-label">Tamna</div>
+                    </div>
+                    <div class="theme neon" [class.active]="theme === 'neon'" (click)="theme = 'neon'">
+                        <div class="theme-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="theme-label">Neon</div>
+                    </div>
+                </div>
+
+                <div class="error" *ngIf="error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {{ error }}
+                </div>
+
+                <button type="submit" class="submit-btn" [class.loading]="loading" [disabled]="loading">
+                    <span class="btn-content">
+                        <span *ngIf="!loading">
+                            <i class="fas fa-user-plus"></i>
+                            Kreiraj račun
+                        </span>
+                        <span *ngIf="loading" class="loading-content">
+                            <div class="spinner"></div>
+                            Kreiranje...
+                        </span>
+                    </span>
+                    <div class="btn-shine"></div>
+                </button>
+            </form>
+
+            <div class="switch-section">
+                <button type="button" class="back-btn" (click)="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Nazad</span>
+                </button>
+
+                <div class="login-link">
+                    Već imate račun?
+                    <span class="login-text" (click)="goLogin()">Prijavite se</span>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <div class="security-info">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Sigurna veza · Enkriptovani podaci</span>
+                </div>
+                <div class="version">v2.0.1</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

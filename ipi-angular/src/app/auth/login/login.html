@@ -1,0 +1,75 @@
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg">
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+        <div class="orb o3"></div>
+    </div>
+
+    <div class="auth-wrap">
+        <div class="card">
+            <div class="header-section">
+                <h1>Dobrodošli</h1>
+                <p>IPI Akademija · Prijava</p>
+            </div>
+
+            <form (ngSubmit)="submit()" #loginForm="ngForm">
+                <div class="field">
+                    <input
+                        [(ngModel)]="email"
+                        name="email"
+                        required
+                        type="email"
+                        placeholder=" "
+                        id="email-input"
+                    />
+                    <label for="email-input">Email adresa</label>
+                </div>
+
+                <div class="field">
+                    <input
+                        type="password"
+                        [(ngModel)]="password"
+                        name="password"
+                        required
+                        placeholder=" "
+                        id="password-input"
+                    />
+                    <label for="password-input">Lozinka</label>
+                </div>
+
+                <div class="error" *ngIf="error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {{ error }}
+                </div>
+
+                <button type="submit" [class.loading]="loading" [disabled]="loading">
+                    <span *ngIf="!loading">Prijavi se</span>
+                    <span *ngIf="loading" class="loading-content">
+                        <div class="spinner"></div>
+                        Prijavljivanje...
+                    </span>
+                </button>
+            </form>
+
+            <div class="switch">
+                <button class="back-btn" (click)="backToHome()">
+                    <i class="fas fa-arrow-left"></i>
+                    Nazad na stranicu
+                </button>
+
+                <div class="register-link">
+                    Nemate račun?
+                    <span (click)="goRegister()">Registrujte se</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

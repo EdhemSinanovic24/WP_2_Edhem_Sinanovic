@@ -1,0 +1,162 @@
+<div class="mood-wrapper">
+
+  <div class="mood-card">
+    <h2>🧠 Pratioc Raspoloženja</h2>
+    <p class="subtitle">Zabilježite svoje emocionalno putovanje i razumijte svoje obrasce kroz vrijeme</p>
+
+    <div class="mood-selection">
+      <div class="mood-label">Kako se danas osjećate?</div>
+      <div class="mood-grid">
+        <div 
+          class="mood-option mood-angry" 
+          [class.active]="selectedMood === 'Angry'"
+          (click)="selectedMood = 'Angry'">
+          <div class="mood-icon">😡</div>
+          <div class="mood-text">Ljut</div>
+        </div>
+        
+        <div 
+          class="mood-option mood-sad" 
+          [class.active]="selectedMood === 'Sad'"
+          (click)="selectedMood = 'Sad'">
+          <div class="mood-icon">😔</div>
+          <div class="mood-text">Tužan</div>
+        </div>
+        
+        <div 
+          class="mood-option mood-neutral" 
+          [class.active]="selectedMood === 'Neutral'"
+          (click)="selectedMood = 'Neutral'">
+          <div class="mood-icon">😐</div>
+          <div class="mood-text">Neutralan</div>
+        </div>
+        
+        <div 
+          class="mood-option mood-happy" 
+          [class.active]="selectedMood === 'Happy'"
+          (click)="selectedMood = 'Happy'">
+          <div class="mood-icon">😊</div>
+          <div class="mood-text">Sretan</div>
+        </div>
+        
+        <div 
+          class="mood-option mood-excited" 
+          [class.active]="selectedMood === 'Excited'"
+          (click)="selectedMood = 'Excited'">
+          <div class="mood-icon">🤩</div>
+          <div class="mood-text">Uzbuđen</div>
+        </div>
+        
+        <div 
+          class="mood-option mood-calm" 
+          [class.active]="selectedMood === 'Calm'"
+          (click)="selectedMood = 'Calm'">
+          <div class="mood-icon">😌</div>
+          <div class="mood-text">Smiren</div>
+        </div>
+        
+        <div 
+          class="mood-option mood-tired" 
+          [class.active]="selectedMood === 'Tired'"
+          (click)="selectedMood = 'Tired'">
+          <div class="mood-icon">😴</div>
+          <div class="mood-text">Umoran</div>
+        </div>
+        
+        <div 
+          class="mood-option mood-anxious" 
+          [class.active]="selectedMood === 'Anxious'"
+          (click)="selectedMood = 'Anxious'">
+          <div class="mood-icon">😰</div>
+          <div class="mood-text">Anksiozan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-section">
+      <div class="note-label">
+        <span>📝</span>
+        <span>Zabilježite svoje misli (opcionalno)</span>
+      </div>
+      <textarea
+        class="note-input"
+        [(ngModel)]="note"
+        placeholder="Šta vam je na umu? Opišite svoje osjećaje, misli ili bilo što što želite zapamtiti o današnjem danu..."
+        maxlength="500">
+      </textarea>
+      <div style="text-align: right; margin-top: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.5);">
+        {{ (note || '').length }}/500 karaktera
+      </div>
+    </div>
+
+    <button 
+      class="save-btn" 
+      (click)="saveMood()"
+      [disabled]="!selectedMood">
+      <span>💾 Sačuvaj Današnje Raspoloženje</span>
+    </button>
+
+    <div class="message" *ngIf="message">
+      <span>{{ message }}</span>
+    </div>
+
+    <div class="history-section" *ngIf="moods.length > 0">
+      <div class="history-header">
+        <div class="history-title">
+          <span>📊</span>
+          <span>Historija Raspoloženja</span>
+          <span class="history-count">{{ moods.length }} unosa</span>
+        </div>
+        <button class="clear-btn" (click)="clearHistory()">
+          <span>🗑️</span>
+          <span>Obriši Sve</span>
+        </button>
+      </div>
+
+      <div class="mood-entries">
+        <div 
+          class="mood-entry" 
+          *ngFor="let m of moods; let i = index"
+          [class]="'mood-' + m.mood.toLowerCase()"
+          [style.animation-delay]="i * 0.1 + 's'">
+          
+          <div class="entry-header">
+            <div class="mood-display">
+              <div class="mood-emoji">
+                {{ getMoodEmoji(m.mood) }}
+              </div>
+              <div class="mood-info">
+                <div class="mood-type">{{ m.mood }}</div>
+                <div class="mood-date">{{ m.date }}</div>
+              </div>
+            </div>
+            <div class="entry-actions">
+              <button class="delete-btn" (click)="deleteMood(i)">
+                <span>🗑️</span>
+                <span>Obriši</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="entry-note" *ngIf="m.note">
+            {{ m.note }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-history" *ngIf="moods.length === 0">
+      <div class="empty-icon">📅</div>
+      <div class="empty-text">
+        <p>Još nema unosa raspoloženja</p>
+        <p style="font-size: 14px; margin-top: 8px; opacity: 0.6;">Vaša historija raspoloženja će se pojaviti ovdje</p>
+      </div>
+    </div>
+
+    <button class="back-btn" routerLink="/dashboard">
+      <span>←</span>
+      <span>Nazad na Kontrolnu Tablu</span>
+    </button>
+  </div>
+
+</div>

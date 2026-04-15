@@ -1,0 +1,213 @@
+/* GLOBAL DARK THEME */
+body {
+    background-color: #0c0e12;
+    color: #e4e4e4;
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    border-bottom: 1px solid #222;
+    width: 100%;
+    background: #0d0f14;
+}
+
+header h1 {
+    font-size: 42px;
+    letter-spacing: 2px;
+    margin: 0;
+    color: #00e1ff;
+    text-shadow: 0 0 12px #00e1ff;
+}
+
+header p {
+    margin-top: 8px;
+    font-size: 16px;
+    color: #b5b5b5;
+}
+
+/* MAIN AREA */
+main {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* BINGO BOARD */
+.board-container {
+    background: #13161d;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.07);
+    border: 1px solid #1c222b;
+
+    /* DODANO — tabla sada centrirana !! */
+    margin: 0 auto;
+    display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #2b313c;
+    text-align: center;
+    font-size: 22px;
+    cursor: pointer;
+    background: #0f131a;
+    transition: all 0.2s ease;
+}
+
+/* hover */
+td:hover {
+    background: #1b2230;
+}
+
+/* marked field */
+.marked {
+    background: #00e1ff !important;
+    color: #000;
+    box-shadow: 0 0 12px #00e1ff;
+}
+
+/* BUTTONS */
+.main-btn {
+    margin-top: 25px;
+    padding: 12px 28px;
+    background: #00e1ff;
+    color: #000;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.25s;
+    font-weight: bold;
+}
+
+.main-btn:hover {
+    background: #00c4dd;
+    box-shadow: 0 0 14px #00e1ff;
+}
+
+/* button group layout */
+.btn-group {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 40px;
+    padding: 15px;
+    color: #777;
+    font-size: 14px;
+}
+
+/* ==================== POPUP OVERLAY ==================== */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* BOX */
+.popup-content {
+    background: #151921;
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,255,255,0.1);
+    animation: popupFade 0.3s ease;
+}
+
+@keyframes popupFade {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    color: #00e1ff;
+    text-shadow: 0 0 8px #00e1ff;
+}
+
+/* INPUT POLJE */
+.popup-content input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #2b313c;
+    background: #0e1117;
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.popup-content input:focus {
+    border-color: #00e1ff;
+    outline: none;
+    box-shadow: 0 0 8px #00e1ff;
+}
+
+/* DUgmad u popupu */
+.popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.popup-buttons button {
+    padding: 10px 22px;
+    background: #00e1ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.popup-buttons button:hover {
+    background: #00c4dd;
+}
+
+/* ==================== WIN MESSAGE ==================== */
+.win-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #00e1ff;
+    color: #000;
+    padding: 25px 40px;
+    border-radius: 12px;
+    font-size: 28px;
+    font-weight: bold;
+    display: none;
+    z-index: 99999;
+    box-shadow: 0 0 25px #00e1ff;
+    animation: winPop 0.4s ease;
+}
+
+@keyframes winPop {
+    from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}

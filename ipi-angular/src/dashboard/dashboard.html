@@ -1,0 +1,109 @@
+<div class="bg">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">IPI</div>
+      <span class="brand-name">Akademija</span>
+    </div>
+
+    <nav class="sidenav">
+      <a class="nav-item active" *ngFor="let m of modules" (click)="open(m.key)">
+        <span class="nav-icon">{{ m.icon }}</span>
+        <span class="nav-label">{{ m.label }}</span>
+      </a>
+      <a class="nav-item funzone-item" (click)="openStudentFunZone()">
+        <span class="nav-icon">🎮</span>
+        <span class="nav-label">Fun Zone</span>
+      </a>
+    </nav>
+
+    <button class="logout-btn" (click)="logout()">
+      <span>⏻</span> Logout
+    </button>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="greeting">
+        <p class="greeting-sub">Good {{ timeOfDay }}</p>
+        <h1 class="greeting-name">{{ username }} 👋</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="avatar">{{ username[0] }}</div>
+      </div>
+    </header>
+
+    <!-- STATS ROW -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon">🔥</div>
+        <div class="stat-info">
+          <span class="stat-val">7</span>
+          <span class="stat-lbl">Day streak</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">💧</div>
+        <div class="stat-info">
+          <span class="stat-val">6/8</span>
+          <span class="stat-lbl">Glasses today</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌙</div>
+        <div class="stat-info">
+          <span class="stat-val">7.5h</span>
+          <span class="stat-lbl">Last sleep</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🧠</div>
+        <div class="stat-info">
+          <span class="stat-val">Good</span>
+          <span class="stat-lbl">Today's mood</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE GRID -->
+    <h2 class="section-title">Modules</h2>
+    <div class="grid">
+      <div class="module" *ngFor="let m of modules" (click)="open(m.key)">
+        <div class="mod-top">
+          <span class="mod-icon">{{ m.icon }}</span>
+          <span class="mod-arrow">→</span>
+        </div>
+        <div class="mod-label">{{ m.label }}</div>
+      </div>
+
+      <!-- FUN ZONE WIDE CARD -->
+      <div class="module funzone-card" (click)="openStudentFunZone()">
+        <div class="mod-top">
+          <span class="mod-icon">🎮</span>
+          <span class="mod-arrow">→</span>
+        </div>
+        <div class="mod-label">Student Fun Zone</div>
+        <div class="mod-sub">Bingo · Kviz · Whiteboard · Kanban</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div class="command" [class.open]="cmdOpen">
+  <input
+    placeholder="Upiši: habit / sleep / water / mood / meal / calendar / funzone"
+    (keyup.enter)="runCommand($event.target.value)"
+  />
+</div>

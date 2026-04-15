@@ -1,0 +1,161 @@
+html {
+    background: #e8f0ff; /* svijetla plava pozadina */
+}
+
+body {
+    font-size: 14px;
+    font-family: "Segoe UI", Verdana, Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* Header */
+header {
+    width: 80%;
+    margin: 0 auto;
+    background: white;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #1a73e8;
+}
+
+header img {
+    margin: 15px 0 10px 30px;
+}
+
+/* Navigacija */
+nav {
+    background-color: #1a73e8;  /* GOOGLE PLAVA */
+    padding: 0;
+    border-radius: 4px;
+}
+
+nav a, nav a:hover, nav a:visited, nav a:active {
+    color: white;
+    padding: 12px 22px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav a:hover {
+    background: #1558b0; /* tamnija plava */
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+/* Linkovi u tekstu */
+a, a:hover, a:visited, a:active {
+    color: #1a73e8;
+    font-weight: bold;
+}
+
+/* Naslovi */
+h2, h3 {
+    color: #1a73e8;
+}
+
+/* Glavni sadržaj */
+article {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 40px;
+    background: white;
+    border-bottom: 3px solid #1a73e8;
+    min-height: 600px;
+    box-sizing: border-box;
+}
+
+article img {
+    float: right;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+    padding-top: 15px;
+    min-height: 30px;
+    background: #1a73e8;
+    color: white;
+    text-align: center;
+}
+
+/* Tabele */
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    font-size: 13px;
+    border: solid 1px #b5c4dd;
+    padding: 6px 4px;
+}
+
+th {
+    color: #ffffff;
+    background-color: #1a73e8;
+    height: 35px;
+}
+
+tr:nth-child(odd) {
+    background-color: #f1f5ff;
+}
+
+/* Forme */
+fieldset {
+    width: 50%;
+    margin-bottom: 15px;
+    background-color: #f3f6ff;
+    border: 1px solid #acc3ff;
+}
+
+fieldset legend {
+    color: #1a73e8;
+    font-weight: bold;
+}
+
+label {
+    display: inline-block;
+    width: 30%;
+}
+
+select, input[type=text], input[type=email], textarea {
+    box-sizing: border-box;
+    width: 60%;
+    margin-bottom: 5px;
+    padding: 6px;
+    border: 1px solid #b6c6e8;
+    border-radius: 4px;
+}
+
+input[type=checkbox] {
+    margin-left: 30%;
+}
+
+/* Dugmad */
+button {
+    background-color: #1a73e8;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1558b0;
+}

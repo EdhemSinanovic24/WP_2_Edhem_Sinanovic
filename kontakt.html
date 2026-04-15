@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kursevi IPI – Kontakt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Open Sans", sans-serif; background: #f0f4fa; color: #2c2c2c; font-size: 15px; line-height: 1.75; }
+
+    header { background: white; border-bottom: 1px solid #dde3ef; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    header img { height: 48px; object-fit: contain; }
+    .auth-buttons { display: flex; gap: 10px; }
+    .auth-buttons a { text-decoration: none; padding: 7px 20px; border-radius: 6px; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+    .login-btn { background: #0e4da4; color: white; }
+    .login-btn:hover { background: #0a3a7e; }
+    .register-btn { background: #ffcc00; color: #0a3a7e; }
+    .register-btn:hover { background: #f0bf00; }
+
+    nav { background: #0e4da4; }
+    nav ul { list-style: none; display: flex; max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+    nav ul li a { display: block; text-decoration: none; color: rgba(255,255,255,0.85); font-weight: 600; font-size: 13px; padding: 13px 18px; letter-spacing: 0.02em; transition: all 0.2s; border-bottom: 3px solid transparent; }
+    nav ul li a:hover, nav ul li a.active { color: white; border-bottom-color: #ffcc00; background: rgba(255,255,255,0.06); }
+
+    .banner { position: relative; height: 220px; overflow: hidden; background: #0a3a7e; }
+    .banner img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+    .banner-text { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 80px; }
+    .banner-text h1 { font-size: 30px; font-weight: 700; color: white; margin-bottom: 8px; }
+    .banner-text p { color: rgba(255,255,255,0.75); font-size: 15px; font-weight: 300; }
+
+    .page-wrap { max-width: 1100px; margin: 40px auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+
+    article { background: white; border-radius: 8px; padding: 36px 40px; border: 1px solid #dde3ef; }
+    article h2 { color: #0e4da4; font-size: 22px; font-weight: 700; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid #f0f4fa; }
+    article p { color: #444; margin-bottom: 10px; font-weight: 300; }
+    article a { color: #0e4da4; font-weight: 600; text-decoration: none; }
+    article a:hover { text-decoration: underline; }
+
+    /* Kontakt info kartica */
+    .contact-block {
+      background: #f5f8ff;
+      border: 1px solid #dde3ef;
+      border-left: 4px solid #0e4da4;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #444;
+      font-weight: 300;
+      line-height: 2;
+    }
+
+    .contact-block a {
+      color: #0e4da4;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-block a:hover { text-decoration: underline; }
+
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .sidebar-card { background: white; border-radius: 8px; border: 1px solid #dde3ef; overflow: hidden; }
+    .sidebar-card-header { background: #0e4da4; color: white; font-weight: 700; font-size: 13px; padding: 12px 18px; letter-spacing: 0.03em; }
+    .sidebar-card-body { padding: 18px; }
+    .sidebar-card-body p { font-size: 13px; color: #555; font-weight: 300; line-height: 1.6; margin-bottom: 12px; }
+    .sidebar-card-body a { display: inline-block; background: #0e4da4; color: white; text-decoration: none; padding: 8px 18px; border-radius: 5px; font-size: 13px; font-weight: 600; transition: background 0.2s; }
+    .sidebar-card-body a:hover { background: #0a3a7e; }
+    .sidebar-links { list-style: none; }
+    .sidebar-links li { border-bottom: 1px solid #f0f4fa; }
+    .sidebar-links li:last-child { border-bottom: none; }
+    .sidebar-links li a { display: flex; align-items: center; gap: 10px; padding: 11px 18px; font-size: 13px; color: #0e4da4; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .sidebar-links li a:hover { background: #f5f8ff; }
+    .sidebar-links li a::before { content: '›'; font-size: 18px; color: #0e4da4; line-height: 1; }
+
+    footer { background: #0e4da4; color: rgba(255,255,255,0.8); text-align: center; padding: 20px 48px; font-size: 13px; margin-top: 20px; }
+
+    @media (max-width: 800px) {
+      .page-wrap { grid-template-columns: 1fr; padding: 0 20px; }
+      .banner-text { padding: 0 30px; }
+      .banner-text h1 { font-size: 22px; }
+      header { padding: 0 20px; }
+      nav ul { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html"><img src="slike/logo-ipi.png" alt="Kursevi IPI" /></a>
+  <div class="auth-buttons">
+    <a href="http://localhost:4200/login" class="login-btn">Login</a>
+    <a href="http://localhost:4200/register" class="register-btn">Register</a>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">O kursevima</a></li>
+    <li><a href="popis.html">Popis kurseva</a></li>
+    <li><a href="raspored.html">Raspored kurseva</a></li>
+    <li><a href="kontakt.html" class="active">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="banner">
+  <img src="slike/srce.jpg" alt="Kontakt" />
+  <div class="banner-text">
+    <h1>Kontakt</h1>
+    <p>Pronađite nas i stupite s nama u kontakt</p>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <article>
+    <h2>Kontakt</h2>
+    <p>Do IPI-ja se može doći javnim gradskim prevozom ili taksijem.</p>
+    <p>Naša adresa je:</p>
+
+    <div class="contact-block">
+      Internacionalna poslovno-informaciona akademija Tuzla<br>
+      Kulina bana br. 2 (Skver)<br>
+      Tuzla, 75000<br>
+      Bosna i Hercegovina<br>
+      <a href="mailto:info@ipi-akademija.ba">info@ipi-akademija.ba</a>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">BRZE VEZE</div>
+      <ul class="sidebar-links">
+        <li><a href="index.html">O kursevima</a></li>
+        <li><a href="popis.html">Popis kurseva</a></li>
+        <li><a href="raspored.html">Raspored kurseva</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">PRIJAVA</div>
+      <div class="sidebar-card-body">
+        <p>Prijavite se na platformu i pratite svoje kurseve i napredak.</p>
+        <a href="http://localhost:4200/login">Prijavi se</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>&copy; Internacionalna poslovno-informaciona akademija Tuzla</footer>
+
+</body>
+</html>

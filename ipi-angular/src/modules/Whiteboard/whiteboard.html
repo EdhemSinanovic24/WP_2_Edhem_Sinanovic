@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktivni Whiteboard</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Whiteboard stil */
+        #board {
+            cursor: url("marker.png") 5 30, auto;
+            border: 2px solid #333;
+            background: white;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            touch-action: none;
+        }
+
+        .toolbar {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        button,
+        input {
+            margin: 5px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #444;
+        }
+
+        body {
+            user-select: none;
+        }
+
+        /* Popup stil */
+        #emailPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            z-index: 9999;
+            text-align: center;
+        }
+
+        #emailPopup input {
+            width: 90%;
+            margin: 10px 0;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>✏️ Interaktivni Whiteboard</h1>
+
+<!-- Toolbar -->
+<div class="toolbar">
+    <label for="colorPicker">Boja:</label>
+    <input type="color" id="colorPicker" value="#000000">
+
+    <label for="brushSize">Četka:</label>
+    <input type="range" id="brushSize" min="1" max="20" value="3">
+
+    <button id="eraserBtn">Briši</button>
+    <button id="clearBtn">Čista ploča</button>
+    <button id="saveBtn">Snimi</button>
+
+    <!-- NOVO DUGME -->
+    <button id="emailBtn">Pošalji mailom</button>
+</div>
+
+<!-- Popup za email -->
+<div id="emailPopup">
+    <h3>Pošalji crtež mailom</h3>
+    <input type="email" id="emailAddress" placeholder="Unesi email" />
+    <br>
+    <button id="sendEmail">Pošalji</button>
+    <button onclick="closePopup()">Zatvori</button>
+</div>
+
+<!-- Drawing area -->
+<canvas id="board" width="900" height="500"></canvas>
+
+<footer>
+    Web programiranje 2025 © Internacionalna poslovno-informaciona akademija Tuzla
+</footer>
+
+<script>
+    // ======== Selektuj elemente ========
+    const canvas = document.getElementById("board");
+    const ctx = canvas.getContext("2d");
+
+    const colorPicker = document.getElementById("colorPicker");
+    const brushSize = document.getElementById("brushSize");
+    const clearBtn = document.getElementById("clearBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const eraserBtn = document.getElementById("eraserBtn");
+    const emailBtn = document.getElementById("emailBtn");
+
+    const emailPopup = document.getElementById("emailPopup");
+    const sendEmail = document.getElementById("sendEmail");
+    const emailField = document.getElementById("emailAddress");
+
+    // ======== Pocetne postavke ========
+    let drawing = false;
+    let currentColor = colorPicker.value;
+    let isErasing = false;
+
+    // ======== Funkcije crtanja ========
+    function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+
+        const clientX = e.clientX || (e.touches?.[0]?.clientX);
+        const clientY = e.clientY || (e.touches?.[0]?.clientY);
+
+        return {
+            x: (clientX - rect.left) * scaleX,
+            y: (clientY - rect.top) * scaleY
+        };
+    }
+
+    function startDraw(e) {
+        drawing = true;
+        ctx.beginPath();
+        draw(e);
+    }
+
+    function endDraw() {
+        drawing = false;
+        ctx.beginPath();
+    }
+
+    function draw(e) {
+        if (!drawing) return;
+
+        const { x, y } = getPos(e);
+
+        ctx.lineWidth = brushSize.value;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = isErasing ? "#FFFFFF" : currentColor;
+
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    }
+
+    // ======== Mouse events ========
+    canvas.addEventListener("mousedown", startDraw);
+    canvas.addEventListener("mouseup", endDraw);
+    canvas.addEventListener("mousemove", draw);
+
+    // ======== Touch events ========
+    canvas.addEventListener("touchstart", startDraw);
+    canvas.addEventListener("touchmove", (e) => {
+        draw(e);
+        e.preventDefault();
+    });
+    canvas.addEventListener("touchend", endDraw);
+
+    // ======== Toolbar logika ========
+    colorPicker.addEventListener("input", () => {
+        currentColor = colorPicker.value;
+        isErasing = false;
+        eraserBtn.textContent = "Briši";
+    });
+
+    eraserBtn.addEventListener("click", () => {
+        isErasing = !isErasing;
+        eraserBtn.textContent = isErasing ? "Piši" : "Briši";
+    });
+
+    clearBtn.addEventListener("click", () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+    saveBtn.addEventListener("click", () => {
+        const image = canvas.toDataURL("image/png");
+        const link = document.createElement("a");
+        link.href = image;
+        link.download = "moj_crtez.png";
+        link.click();
+    });
+
+    // ======== MAILTO FUNKCIJA ispravljena ========
+    emailBtn.addEventListener("click", () => {
+        emailPopup.style.display = "block";
+    });
+
+    function closePopup() {
+        emailPopup.style.display = "none";
+    }
+
+    sendEmail.addEventListener("click", () => {
+        const email = emailField.value.trim();
+        if (!email) {
+            alert("Unesi email.");
+            return;
+        }
+
+        const image = canvas.toDataURL("image/png");
+
+        const mailtoLink =
+            `mailto:${email}` +
+            `?subject=Whiteboard%20crtez` +
+            `&body=Vaš%20crtež%20(base64)%3A%0A${encodeURIComponent(image)}`;
+
+        window.location.href = mailtoLink;
+
+        closePopup();
+    });
+</script>
+
+</body>
+</html>

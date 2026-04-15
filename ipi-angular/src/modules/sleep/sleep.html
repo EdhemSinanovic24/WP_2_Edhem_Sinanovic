@@ -1,0 +1,114 @@
+<div class="sleep-wrapper">
+  
+  <div class="stars">
+    <div class="star" style="top: 15%; left: 10%; width: 2px; height: 2px; animation-delay: 0s;"></div>
+    <div class="star" style="top: 25%; left: 85%; width: 3px; height: 3px; animation-delay: 0.5s;"></div>
+    <div class="star" style="top: 65%; left: 15%; width: 1px; height: 1px; animation-delay: 1s;"></div>
+    <div class="star" style="top: 45%; left: 75%; width: 2px; height: 2px; animation-delay: 1.5s;"></div>
+    <div class="star" style="top: 80%; left: 40%; width: 3px; height: 3px; animation-delay: 2s;"></div>
+    <div class="star" style="top: 30%; left: 50%; width: 1px; height: 1px; animation-delay: 2.5s;"></div>
+  </div>
+
+  <div class="sleep-card">
+    <h2>🌙 Pratioc Sna</h2>
+    <p class="subtitle">
+      Pratite svoje obrasce spavanja i shvatite kako kvalitetan odmor utiče na vašu dnevnu energiju
+    </p>
+
+    <div class="inputs">
+      <div class="field">
+        <label>⏱ Trajanje Sna (Sati)</label>
+        <input 
+          type="number" 
+          min="1" 
+          max="24" 
+          [(ngModel)]="hours"
+          placeholder="Unesite sate spavanja"
+          step="0.5"
+        >
+      </div>
+
+      <div class="field">
+        <label>⭐ Kvalitet Sna</label>
+        <div class="quality-options">
+          <button 
+            class="quality-btn" 
+            [class.active]="quality === 'Poor'"
+            (click)="quality = 'Poor'"
+            type="button">
+            😴 Loš
+          </button>
+          <button 
+            class="quality-btn" 
+            [class.active]="quality === 'Average'"
+            (click)="quality = 'Average'"
+            type="button">
+            😐 Prosečan
+          </button>
+          <button 
+            class="quality-btn" 
+            [class.active]="quality === 'Good'"
+            (click)="quality = 'Good'"
+            type="button">
+            😊 Dobar
+          </button>
+          <button 
+            class="quality-btn" 
+            [class.active]="quality === 'Excellent'"
+            (click)="quality = 'Excellent'"
+            type="button">
+            🌟 Izvrstan
+          </button>
+          <button 
+            class="quality-btn" 
+            [class.active]="quality === 'Restless'"
+            (click)="quality = 'Restless'"
+            type="button">
+            🔄 Nemiran
+          </button>
+          <button 
+            class="quality-btn" 
+            [class.active]="quality === 'Deep'"
+            (click)="quality = 'Deep'"
+            type="button">
+            💤 Dubok
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="save" (click)="save()">
+      <span>💾 Sačuvaj Podatke o Snu</span>
+    </button>
+
+    <div class="message" *ngIf="message">
+      <span>{{ message }}</span>
+    </div>
+
+    <div class="result" *ngIf="hours && quality">
+      <div class="bar-container">
+        <span class="bar-label">Ocjena Sna</span>
+        <div class="bar">
+          <div
+            class="fill"
+            [style.width.%]="calculateSleepScore()">
+          </div>
+        </div>
+        <span class="bar-label">{{ calculateSleepScore() }}%</span>
+      </div>
+      
+      <p class="hint">
+        <span *ngIf="hours < 6">⚠️ Otkriven nedostatak sna. Razmislite o prilagođavanju rutine.</span>
+        <span *ngIf="hours >= 6 && hours <= 9">✅ Optimalno trajanje sna. Nastavite tako!</span>
+        <span *ngIf="hours > 9">💤 Produženo razdoblje odmora. Slušajte potrebe svog tijela.</span>
+        <br>
+        Kvalitet: <strong>{{ quality }}</strong> • Trajanje: <strong>{{ hours }} sati</strong>
+      </p>
+    </div>
+
+    <button class="back" routerLink="/dashboard">
+      <span>← Nazad na Kontrolnu Tablu</span>
+    </button>
+  </div>
+
+</div>

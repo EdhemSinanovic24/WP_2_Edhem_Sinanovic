@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kursevi IPI – Raspored</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Open Sans", sans-serif; background: #f0f4fa; color: #2c2c2c; font-size: 15px; line-height: 1.75; }
+
+    header { background: white; border-bottom: 1px solid #dde3ef; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    header img { height: 48px; object-fit: contain; }
+    .auth-buttons { display: flex; gap: 10px; }
+    .auth-buttons a { text-decoration: none; padding: 7px 20px; border-radius: 6px; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+    .login-btn { background: #0e4da4; color: white; }
+    .login-btn:hover { background: #0a3a7e; }
+    .register-btn { background: #ffcc00; color: #0a3a7e; }
+    .register-btn:hover { background: #f0bf00; }
+
+    nav { background: #0e4da4; }
+    nav ul { list-style: none; display: flex; max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+    nav ul li a { display: block; text-decoration: none; color: rgba(255,255,255,0.85); font-weight: 600; font-size: 13px; padding: 13px 18px; letter-spacing: 0.02em; transition: all 0.2s; border-bottom: 3px solid transparent; }
+    nav ul li a:hover, nav ul li a.active { color: white; border-bottom-color: #ffcc00; background: rgba(255,255,255,0.06); }
+
+    .banner { position: relative; height: 220px; overflow: hidden; background: #0a3a7e; }
+    .banner img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+    .banner-text { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 80px; }
+    .banner-text h1 { font-size: 30px; font-weight: 700; color: white; margin-bottom: 8px; }
+    .banner-text p { color: rgba(255,255,255,0.75); font-size: 15px; font-weight: 300; }
+
+    .page-wrap { max-width: 1100px; margin: 40px auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+
+    article { background: white; border-radius: 8px; padding: 36px 40px; border: 1px solid #dde3ef; }
+    article h2 { color: #0e4da4; font-size: 22px; font-weight: 700; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid #f0f4fa; }
+    article p { color: #444; margin-bottom: 20px; font-weight: 300; }
+    article a { color: #0e4da4; font-weight: 600; text-decoration: none; }
+    article a:hover { text-decoration: underline; }
+
+    /* Tabela */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+    thead tr { background: #0e4da4; }
+    thead th { color: white; font-weight: 600; padding: 12px 14px; text-align: left; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid #eef1f7; transition: background 0.15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f5f8ff; }
+    tbody tr:nth-child(even) { background: #f9fafc; }
+    tbody tr:nth-child(even):hover { background: #f0f4ff; }
+    td { padding: 11px 14px; color: #444; font-weight: 300; vertical-align: middle; }
+    td:first-child { font-weight: 400; color: #2c2c2c; }
+
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .sidebar-card { background: white; border-radius: 8px; border: 1px solid #dde3ef; overflow: hidden; }
+    .sidebar-card-header { background: #0e4da4; color: white; font-weight: 700; font-size: 13px; padding: 12px 18px; letter-spacing: 0.03em; }
+    .sidebar-card-body { padding: 18px; }
+    .sidebar-card-body p { font-size: 13px; color: #555; font-weight: 300; line-height: 1.6; margin-bottom: 12px; }
+    .sidebar-card-body a { display: inline-block; background: #0e4da4; color: white; text-decoration: none; padding: 8px 18px; border-radius: 5px; font-size: 13px; font-weight: 600; transition: background 0.2s; }
+    .sidebar-card-body a:hover { background: #0a3a7e; }
+    .sidebar-links { list-style: none; }
+    .sidebar-links li { border-bottom: 1px solid #f0f4fa; }
+    .sidebar-links li:last-child { border-bottom: none; }
+    .sidebar-links li a { display: flex; align-items: center; gap: 10px; padding: 11px 18px; font-size: 13px; color: #0e4da4; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .sidebar-links li a:hover { background: #f5f8ff; }
+    .sidebar-links li a::before { content: '›'; font-size: 18px; color: #0e4da4; line-height: 1; }
+
+    footer { background: #0e4da4; color: rgba(255,255,255,0.8); text-align: center; padding: 20px 48px; font-size: 13px; margin-top: 20px; }
+
+    @media (max-width: 800px) {
+      .page-wrap { grid-template-columns: 1fr; padding: 0 20px; }
+      .banner-text { padding: 0 30px; }
+      .banner-text h1 { font-size: 22px; }
+      header { padding: 0 20px; }
+      nav ul { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html"><img src="slike/logo-ipi.png" alt="Kursevi IPI" /></a>
+  <div class="auth-buttons">
+    <a href="http://localhost:4200/login" class="login-btn">Login</a>
+    <a href="http://localhost:4200/register" class="register-btn">Register</a>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">O kursevima</a></li>
+    <li><a href="popis.html">Popis kurseva</a></li>
+    <li><a href="raspored.html" class="active">Raspored kurseva</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="banner">
+  <img src="slike/tecajevi2.jpg" alt="Raspored kurseva" />
+  <div class="banner-text">
+    <h1>Raspored kurseva</h1>
+    <p>Termini i lokacije kurseva za tekući mjesec</p>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <article>
+    <h2>Raspored kurseva</h2>
+    <p>Objavljen je raspored kurseva za juni.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kurs</th>
+            <th>Šifra</th>
+            <th>Početak</th>
+            <th>Sat</th>
+            <th>Trajanje</th>
+            <th>Učionica</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Uporaba baza podataka (Access)</td>
+            <td>E504</td>
+            <td>Ponedjeljak, 15.09.2014.</td>
+            <td>09:00</td>
+            <td>4 x 4</td>
+            <td>Srce-A</td>
+          </tr>
+          <tr>
+            <td>Obrada teksta (Word)</td>
+            <td>E304</td>
+            <td>Ponedjeljak, 15.09.2014.</td>
+            <td>17:30</td>
+            <td>4 x 4</td>
+            <td>Srce-B</td>
+          </tr>
+          <tr>
+            <td>Wordionica ili kako oblikovati seminarski rad</td>
+            <td>R100</td>
+            <td>Četvrtak, 18.09.2014.</td>
+            <td>09:00</td>
+            <td>1 x 5</td>
+            <td>Srce-E1</td>
+          </tr>
+          <tr>
+            <td>Prezentacije (PowerPoint)</td>
+            <td>E604</td>
+            <td>Subota, 20.09.2014.</td>
+            <td>09:00</td>
+            <td>2 x 6</td>
+            <td>Srce-B</td>
+          </tr>
+          <tr>
+            <td>Proračunske tablice - napredna razina (Excel)</td>
+            <td>E414</td>
+            <td>Subota, 20.09.2014.</td>
+            <td>09:00</td>
+            <td>2 x 8</td>
+            <td>Srce-B</td>
+          </tr>
+          <tr>
+            <td>Baze podataka - napredna razina (Access)</td>
+            <td>E514</td>
+            <td>Ponedjeljak, 29.09.2014.</td>
+            <td>09:00</td>
+            <td>4 x 4</td>
+            <td>Srce-A</td>
+          </tr>
+          <tr>
+            <td>Exceliranje ili kako izraditi tablice, grafikone i formule</td>
+            <td>R200</td>
+            <td>Utorak, 30.09.2014.</td>
+            <td>09:00</td>
+            <td>1 x 5</td>
+            <td>Srce-E1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">BRZE VEZE</div>
+      <ul class="sidebar-links">
+        <li><a href="index.html">O kursevima</a></li>
+        <li><a href="popis.html">Popis kurseva</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">PRIJAVA</div>
+      <div class="sidebar-card-body">
+        <p>Prijavite se na platformu i pratite svoje kurseve i napredak.</p>
+        <a href="http://localhost:4200/login">Prijavi se</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>&copy; Internacionalna poslovno-informaciona akademija Tuzla</footer>
+
+</body>
+</html>
