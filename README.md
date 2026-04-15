@@ -1,5 +1,5 @@
 # IPI Akademija – Projekat
-### Edhem Sinanovic | I-0131/23 | Treča godina
+### Edhem Sinanovic | I-0131/23 | Treća godina
 
 ---
 
