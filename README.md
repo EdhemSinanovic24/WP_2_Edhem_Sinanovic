@@ -3,7 +3,7 @@
 
 ---
 
-## 📌 O projektu
+## O projektu
 
 Projekat se sastoji od dva dijela:
 
@@ -12,7 +12,7 @@ Projekat se sastoji od dva dijela:
 
 ---
 
-## 🔄 Dio 1: Tracker sistem (Angular)
+## Dio 1: Tracker sistem (Angular)
 
 Pokretanje:
 
@@ -32,20 +32,19 @@ Aplikacija se pokreće na `http://localhost:4200`.
 
 | Tracker | Opis |
 |---|---|
-| 💧 Water Tracker | Praćenje dnevnog unosa vode |
-| 🍽️ Meal Tracker | Bilježenje obroka i hrane |
-| 📅 Calendar Tracker | Kalendar za događaje i planove |
-| 😊 Mood Tracker | Praćenje dnevnog raspoloženja |
-| 🔄 Habit Tracker | Praćenje dnevnih navika |
-| 😴 Sleep Tracker | Praćenje sna i spavanja |
+|  Water Tracker | Praćenje dnevnog unosa vode |
+|  Meal Tracker | Bilježenje obroka i hrane |
+|  Calendar Tracker | Kalendar za događaje i planove |
+|  Mood Tracker | Praćenje dnevnog raspoloženja |
+|  Habit Tracker | Praćenje dnevnih navika |
+|  Sleep Tracker | Praćenje sna i spavanja |
 
-> Podaci se čuvaju lokalno u browseru. Radi na svim modernim browserima.
+
 
 ---
 
-## 🗂️ Dio 2: IPI-Akademija (statični projekat)
+## Dio 2: IPI-Akademija (statični projekat)
 
-Bez instalacije – samo otvori `index.html` u browseru i sve radi.
 
 ### Struktura projekta
 
@@ -66,13 +65,7 @@ IPI-Akademija/
 └── mail/               # Kontakt forma (offline)
 ```
 
-### Pokretanje
 
-1. Otvori folder `IPI-Akademija`
-2. Pokreni `index.html`
-3. Sve ostale stranice i igre dostupne su iz menija
-
-Kompatibilno s: Chrome, Brave, Edge, Firefox.
 
 ---
 
@@ -80,4 +73,4 @@ Kompatibilno s: Chrome, Brave, Edge, Firefox.
 
 Ime i prezime: Edhem Sinanovic
 Broj indeksa: I-0131/23
-Godina studija: Treča
+Godina studija: Treća
