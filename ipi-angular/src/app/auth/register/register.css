@@ -1,0 +1,516 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ---- Tema: varijable (DARK je default) ---- */
+.page {
+  --page-bg: #080510;
+  --text-color: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --label-bg: #080510;
+
+  --accent: #a855f7;
+  --accent-rgb: 168, 85, 247;
+
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --placeholder: rgba(255, 255, 255, 0.25);
+  --label-color: rgba(255, 255, 255, 0.35);
+
+  --muted: rgba(255, 255, 255, 0.35);
+  --muted-2: rgba(255, 255, 255, 0.2);
+  --muted-3: rgba(255, 255, 255, 0.15);
+
+  --divider: rgba(255, 255, 255, 0.06);
+  --divider-2: rgba(255, 255, 255, 0.04);
+
+  --orb1: radial-gradient(circle, #6a0dad, #3d007a);
+  --orb2: radial-gradient(circle, #c8860a, #7a4d00);
+
+  --submit-grad: linear-gradient(135deg, #7c3aed, #a855f7);
+  --submit-grad-hover: linear-gradient(135deg, #6d28d9, #9333ea);
+  --submit-text: #ffffff;
+
+  --theme-bg: rgba(255, 255, 255, 0.04);
+  --theme-border: rgba(255, 255, 255, 0.08);
+  --theme-hover-bg: rgba(255, 255, 255, 0.07);
+  --theme-hover-border: rgba(255, 255, 255, 0.14);
+  --theme-icon: rgba(255, 255, 255, 0.5);
+
+  --back-btn-bg: rgba(255, 255, 255, 0.04);
+  --back-btn-border: rgba(255, 255, 255, 0.08);
+  --back-btn-color: rgba(255, 255, 255, 0.5);
+  --back-btn-hover-bg: rgba(255, 255, 255, 0.08);
+  --back-btn-hover-border: rgba(255, 255, 255, 0.14);
+  --back-btn-hover-color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---- Tema: Svijetla ---- */
+.page.theme-light {
+  --page-bg: #eef0f5;
+  --text-color: #1a1a2e;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --label-bg: #ffffff;
+
+  --accent: #7c3aed;
+  --accent-rgb: 124, 58, 237;
+
+  --input-bg: rgba(0, 0, 0, 0.03);
+  --input-border: rgba(0, 0, 0, 0.1);
+  --placeholder: rgba(0, 0, 0, 0.3);
+  --label-color: rgba(0, 0, 0, 0.4);
+
+  --muted: rgba(0, 0, 0, 0.4);
+  --muted-2: rgba(0, 0, 0, 0.3);
+  --muted-3: rgba(0, 0, 0, 0.15);
+
+  --divider: rgba(0, 0, 0, 0.08);
+  --divider-2: rgba(0, 0, 0, 0.05);
+
+  --orb1: radial-gradient(circle, #c4b5fd, #a78bfa);
+  --orb2: radial-gradient(circle, #fde68a, #fbbf24);
+
+  --submit-grad: linear-gradient(135deg, #7c3aed, #a855f7);
+  --submit-grad-hover: linear-gradient(135deg, #6d28d9, #9333ea);
+  --submit-text: #ffffff;
+
+  --theme-bg: rgba(0, 0, 0, 0.03);
+  --theme-border: rgba(0, 0, 0, 0.08);
+  --theme-hover-bg: rgba(0, 0, 0, 0.06);
+  --theme-hover-border: rgba(0, 0, 0, 0.15);
+  --theme-icon: rgba(0, 0, 0, 0.4);
+
+  --back-btn-bg: rgba(0, 0, 0, 0.03);
+  --back-btn-border: rgba(0, 0, 0, 0.08);
+  --back-btn-color: rgba(0, 0, 0, 0.5);
+  --back-btn-hover-bg: rgba(0, 0, 0, 0.06);
+  --back-btn-hover-border: rgba(0, 0, 0, 0.15);
+  --back-btn-hover-color: rgba(0, 0, 0, 0.85);
+}
+
+/* ---- Tema: Neon ---- */
+.page.theme-neon {
+  --page-bg: #000000;
+  --text-color: #e6ffff;
+  --card-bg: rgba(0, 255, 234, 0.04);
+  --card-border: rgba(0, 255, 234, 0.25);
+  --label-bg: #000000;
+
+  --accent: #00ffea;
+  --accent-rgb: 0, 255, 234;
+
+  --input-bg: rgba(0, 255, 234, 0.04);
+  --input-border: rgba(0, 255, 234, 0.15);
+  --placeholder: rgba(0, 255, 234, 0.25);
+  --label-color: rgba(0, 255, 234, 0.45);
+
+  --muted: rgba(0, 255, 234, 0.35);
+  --muted-2: rgba(0, 255, 234, 0.2);
+  --muted-3: rgba(0, 255, 234, 0.15);
+
+  --divider: rgba(0, 255, 234, 0.12);
+  --divider-2: rgba(0, 255, 234, 0.06);
+
+  --orb1: radial-gradient(circle, #ff00aa, #aa0066);
+  --orb2: radial-gradient(circle, #00ffea, #007a72);
+
+  --submit-grad: linear-gradient(135deg, #00c2a8, #00ffea);
+  --submit-grad-hover: linear-gradient(135deg, #00ffea, #6bfff0);
+  --submit-text: #001a17;
+
+  --theme-bg: rgba(0, 255, 234, 0.04);
+  --theme-border: rgba(0, 255, 234, 0.15);
+  --theme-hover-bg: rgba(0, 255, 234, 0.08);
+  --theme-hover-border: rgba(0, 255, 234, 0.3);
+  --theme-icon: rgba(0, 255, 234, 0.5);
+
+  --back-btn-bg: rgba(0, 255, 234, 0.04);
+  --back-btn-border: rgba(0, 255, 234, 0.15);
+  --back-btn-color: rgba(0, 255, 234, 0.5);
+  --back-btn-hover-bg: rgba(0, 255, 234, 0.08);
+  --back-btn-hover-border: rgba(0, 255, 234, 0.3);
+  --back-btn-hover-color: #ffffff;
+}
+
+/* ---- Page wrapper (zamjena za body) ---- */
+.page {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--page-bg);
+  color: var(--text-color);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ---- Orbovi ---- */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.35;
+  transition: background 0.3s ease;
+}
+
+.o1 {
+  width: 560px; height: 560px;
+  background: var(--orb1);
+  top: -180px; left: -180px;
+}
+
+.o2 {
+  width: 500px; height: 500px;
+  background: var(--orb2);
+  bottom: -160px; right: -160px;
+}
+
+/* ---- Wrap ---- */
+.auth-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Kartica ---- */
+.card {
+  width: 440px;
+  padding: 44px;
+  border-radius: 28px;
+  background: var(--card-bg);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+  animation: fadeUp 0.5s ease forwards;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Header ---- */
+.header-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header-section h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.header-section p {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---- Fields ---- */
+.field {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.field input {
+  width: 100%;
+  padding: 15px 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 14px;
+  color: var(--text-color);
+  outline: none;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.25s ease;
+}
+
+.field input::placeholder { color: var(--placeholder); }
+
+.field input:focus {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  background: rgba(var(--accent-rgb), 0.05);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+}
+
+.field label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--label-color);
+  pointer-events: none;
+  transition: 0.25s;
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  top: -9px;
+  font-size: 11px;
+  background: var(--label-bg);
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.field-glow { display: none; }
+
+/* ---- Password strength ---- */
+.password-strength {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 3px;
+  background: var(--divider);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #f87171, #fb923c, #a855f7, #34d399);
+  transition: width 0.3s ease;
+}
+
+.strength-text {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted);
+  min-width: 40px;
+}
+
+/* ---- Theme selector ---- */
+.theme-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 20px 0 12px;
+}
+
+.theme-header i { font-size: 12px; }
+
+.themes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.theme {
+  background: var(--theme-bg);
+  border: 1px solid var(--theme-border);
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.theme:hover {
+  background: var(--theme-hover-bg);
+  border-color: var(--theme-hover-border);
+}
+
+.theme.active {
+  background: rgba(var(--accent-rgb), 0.12);
+  border-color: rgba(var(--accent-rgb), 0.4);
+}
+
+.theme-icon {
+  font-size: 18px;
+  color: var(--theme-icon);
+}
+
+.theme.active .theme-icon { color: var(--accent); }
+
+.theme-label {
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted);
+}
+
+.theme.active .theme-label { color: var(--accent); }
+
+/* ---- Error ---- */
+.error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f87171;
+  font-size: 13px;
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: rgba(248, 113, 113, 0.08);
+  border-radius: 10px;
+  border-left: 3px solid #f87171;
+}
+
+/* ---- Submit ---- */
+.submit-btn {
+  width: 100%;
+  height: 50px;
+  border-radius: 14px;
+  border: none;
+  background: var(--submit-grad);
+  color: var(--submit-text);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.35);
+  background: var(--submit-grad-hover);
+}
+
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn-content { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-shine { display: none; }
+
+.loading-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(var(--accent-rgb), 0.3);
+  border-top-color: var(--submit-text);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- Switch sekcija ---- */
+.switch-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--divider);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.back-btn {
+  background: var(--back-btn-bg);
+  border: 1px solid var(--back-btn-border);
+  border-radius: 12px;
+  color: var(--back-btn-color);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.back-btn:hover {
+  background: var(--back-btn-hover-bg);
+  border-color: var(--back-btn-hover-border);
+  color: var(--back-btn-hover-color);
+}
+
+.login-link {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+}
+
+.login-text {
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.login-text:hover { filter: brightness(1.2); }
+
+/* ---- Footer info ---- */
+.footer-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--divider-2);
+}
+
+.security-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted-3);
+  font-family: 'DM Mono', monospace;
+}
+
+.security-info i { font-size: 10px; }
+
+.version {
+  font-size: 11px;
+  color: var(--muted-3);
+  font-family: 'DM Mono', monospace;
+}
+
+@media (max-width: 480px) {
+  .card { width: 100%; padding: 32px 20px; }
+  .header-section h1 { font-size: 24px; }
+  .themes { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .theme { padding: 8px 4px; }
+  .theme-label { font-size: 10px; }
+}

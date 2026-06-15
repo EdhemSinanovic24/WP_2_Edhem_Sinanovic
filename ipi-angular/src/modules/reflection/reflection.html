@@ -1,0 +1,64 @@
+<div class="reflection-wrapper">
+
+  <div class="reflection-card">
+
+    <h2>📝 Daily Reflection</h2>
+    <p class="subtitle">
+      Osvrni se na svoj dan – šta je bilo dobro, šta te je izazvalo i šta možeš poboljšati.
+    </p>
+
+    <p class="message">{{ message }}</p>
+
+    <div class="add-form">
+      <label>✨ Najbolji trenutak dana</label>
+      <textarea rows="2" placeholder="Šta je danas bilo posebno?" [(ngModel)]="highlight"></textarea>
+
+      <label>⚡ Najveći izazov</label>
+      <textarea rows="2" placeholder="Šta je bilo teško danas?" [(ngModel)]="challenge"></textarea>
+
+      <label>🌱 Šta sutra poboljšati</label>
+      <textarea rows="2" placeholder="Šta ćeš sutra raditi drugačije?" [(ngModel)]="improvement"></textarea>
+
+      <label>Ocjena dana</label>
+      <div class="rating-row">
+        <button *ngFor="let n of [1,2,3,4,5]"
+                class="rating-btn"
+                [class.active]="rating >= n"
+                (click)="setRating(n)">★</button>
+      </div>
+
+      <button class="add-btn" (click)="saveEntry()">💾 Sačuvaj refleksiju</button>
+    </div>
+
+    <div class="entry-list" *ngIf="entries.length > 0">
+      <div class="entry-item" *ngFor="let e of entries">
+        <div class="entry-header">
+          <span class="entry-date">{{ e.date }}</span>
+          <span class="entry-rating">
+            <span *ngFor="let n of [1,2,3,4,5]" [class.filled]="e.rating >= n">★</span>
+          </span>
+        </div>
+        <div class="entry-body">
+          <p *ngIf="e.highlight"><strong>✨</strong> {{ e.highlight }}</p>
+          <p *ngIf="e.challenge"><strong>⚡</strong> {{ e.challenge }}</p>
+          <p *ngIf="e.improvement"><strong>🌱</strong> {{ e.improvement }}</p>
+        </div>
+        <button class="remove-btn" (click)="removeEntry(e)">✕</button>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="entries.length === 0">
+      <div class="empty-icon">🌙</div>
+      <p>Još nema zapisanih refleksija.</p>
+      <small>Napišite svoju prvu refleksiju iznad</small>
+    </div>
+
+    <button class="reset" (click)="clearAll()" *ngIf="entries.length > 0">Obriši sve refleksije</button>
+
+    <button class="back" routerLink="/dashboard">
+      ⬅ Nazad na dashboard
+    </button>
+
+  </div>
+
+</div>

@@ -1,0 +1,45 @@
+<div class="kviz-page">
+  <div class="quiz-container">
+    <header>
+      <h1>🧠 Studentski IT Kviz</h1>
+      <p>Provjeri koliko znaš o programiranju - 5 pitanja, brzo i jasno!</p>
+    </header>
+
+    <div class="progress-container">
+      <div class="progress-bar" [style.width.%]="progressPercent"></div>
+    </div>
+
+    <div class="quiz-box" *ngIf="!showResults">
+      <div class="question-header">
+        <span>Pitanje {{ currentQuestion + 1 }} od {{ quizData.length }}</span>
+      </div>
+      <h2>{{ currentQuizItem.question }}</h2>
+
+      <div class="options-container">
+        <div
+          *ngFor="let option of currentQuizItem.options; let i = index"
+          class="option-card"
+          [class.correct]="answered && i === currentQuizItem.correct"
+          [class.incorrect]="answered && i === selectedIndex && i !== currentQuizItem.correct"
+          [class.disabled]="answered"
+          (click)="selectOption(i)"
+        >
+          {{ option }}
+        </div>
+      </div>
+
+      <div class="quiz-footer">
+        <button class="btn" [disabled]="!answered" (click)="nextQuestion()">Sljedeće pitanje ➔</button>
+      </div>
+    </div>
+
+    <div class="result-box" *ngIf="showResults">
+      <h2>📊 Rezultat Kviza</h2>
+      <div class="score-circle">
+        <span>{{ resultPercent }}%</span>
+      </div>
+      <p>Odgovorili ste tačno na {{ score }} od ukupno {{ quizData.length }} pitanja.</p>
+      <button class="btn" (click)="restart()">Pokreni ponovo ↻</button>
+    </div>
+  </div>
+</div>

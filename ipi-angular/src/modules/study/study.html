@@ -1,0 +1,62 @@
+<div class="study-wrapper">
+
+  <div class="study-card">
+
+    <h2>📚 Study Planner</h2>
+    <p class="subtitle">
+      Planiraj svoje sesije učenja i pratite dnevni napredak.
+    </p>
+
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="percent()"></div>
+      </div>
+      <div class="progress-text">
+        <strong>{{ percent() }}%</strong>
+        <span>{{ completedMinutes() }} / {{ dailyGoalMinutes }} min</span>
+      </div>
+    </div>
+
+    <p class="message">{{ message }}</p>
+
+    <div class="goal-input">
+      <label>Dnevni cilj (min)</label>
+      <input type="number" min="0" [(ngModel)]="dailyGoalMinutes" (change)="save()" />
+    </div>
+
+    <div class="add-form">
+      <input type="text" placeholder="Predmet (npr. Matematika)" [(ngModel)]="newSubject" />
+      <input type="text" placeholder="Tema (npr. Integrali)" [(ngModel)]="newTopic" />
+      <input type="number" min="5" step="5" placeholder="Min" [(ngModel)]="newDuration" />
+      <button class="add-btn" (click)="addTask()">➕ Dodaj zadatak</button>
+    </div>
+
+    <div class="task-list" *ngIf="tasks.length > 0">
+      <div class="task-item" *ngFor="let t of tasks" [class.done]="t.done">
+        <div class="task-info" (click)="toggleDone(t)">
+          <span class="check">{{ t.done ? '✅' : '⬜' }}</span>
+          <div class="task-text">
+            <strong>{{ t.subject }}</strong>
+            <span *ngIf="t.topic">{{ t.topic }}</span>
+          </div>
+          <span class="duration">{{ t.duration }} min</span>
+        </div>
+        <button class="remove-btn" (click)="removeTask(t)">✕</button>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="tasks.length === 0">
+      <div class="empty-icon">📝</div>
+      <p>Još nema planiranih sesija učenja.</p>
+      <small>Dodajte prvi zadatak iznad</small>
+    </div>
+
+    <button class="reset" (click)="clearAll()" *ngIf="tasks.length > 0">Obriši sve zadatke</button>
+
+    <button class="back" routerLink="/dashboard">
+      ⬅ Nazad na dashboard
+    </button>
+
+  </div>
+
+</div>

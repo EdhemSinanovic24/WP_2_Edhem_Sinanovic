@@ -1,0 +1,471 @@
+.water-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #001220 0%, #002244 25%, #003366 50%, #004488 75%, #0066cc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.water-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(0, 183, 255, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(64, 156, 255, 0.25) 0%, transparent 50%);
+  animation: float 20s infinite linear;
+}
+
+.water-card {
+  background: rgba(10, 25, 47, 0.9);
+  backdrop-filter: blur(35px);
+  border-radius: 40px;
+  padding: 50px 40px;
+  width: 500px;
+  text-align: center;
+  box-shadow: 
+    0 40px 100px rgba(0, 50, 150, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 0 2px rgba(0, 183, 255, 0.2);
+  border: 1px solid rgba(0, 183, 255, 0.3);
+  position: relative;
+  z-index: 2;
+  animation: cardAppear 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.water-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(0, 183, 255, 0.05) 25%, 
+    transparent 50%, 
+    rgba(64, 156, 255, 0.05) 75%, 
+    transparent 100%);
+  animation: shine 6s infinite linear;
+}
+
+h2 {
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #00d4ff 0%, #0080ff 50%, #0044ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  text-shadow: 0 10px 30px rgba(0, 183, 255, 0.3);
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #00d4ff, #0080ff, #0044ff);
+  border-radius: 2px;
+}
+
+.subtitle {
+  font-size: 16px;
+  opacity: 0.85;
+  margin-bottom: 45px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #b3e0ff;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 2px 10px rgba(0, 183, 255, 0.2);
+}
+
+/* CIRCLE SCALE CONTAINER */
+.circle-scale-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto 45px;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 20, 40, 0.7);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 60px rgba(0, 0, 0, 0.8),
+    0 0 0 8px rgba(0, 183, 255, 0.15),
+    0 0 0 16px rgba(0, 183, 255, 0.05);
+  border: 4px solid rgba(0, 183, 255, 0.2);
+}
+
+/* WATER LEVEL INDICATOR */
+.water-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(0deg, 
+    rgba(0, 100, 255, 0.95) 0%, 
+    rgba(0, 183, 255, 0.95) 30%, 
+    rgba(100, 220, 255, 0.95) 70%, 
+    rgba(255, 255, 255, 0.95) 100%);
+  transition: height 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+}
+
+/* SCALE LINES - OVDE SU GRADACIJSKE LINIJE */
+.scale-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.scale-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  left: 0;
+}
+
+.scale-line.major {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.scale-line.major::after {
+  content: attr(data-value);
+  position: absolute;
+  left: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #80d4ff;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 2px 5px rgba(0, 183, 255, 0.5);
+}
+
+.scale-line.major::before {
+  content: attr(data-value);
+  position: absolute;
+  right: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #80d4ff;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 2px 5px rgba(0, 183, 255, 0.5);
+}
+
+/* CURRENT LEVEL INDICATOR */
+.current-level {
+  position: absolute;
+  right: -50px;
+  transform: translateY(-50%);
+  background: rgba(0, 183, 255, 0.9);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 5px 15px rgba(0, 183, 255, 0.4);
+  z-index: 10;
+  white-space: nowrap;
+  border: 2px solid white;
+}
+
+.current-level::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid rgba(0, 183, 255, 0.9);
+}
+
+/* PROGRESS TEXT INSIDE CIRCLE */
+.circle-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.circle-text strong {
+  font-size: 72px;
+  font-weight: 900;
+  margin-bottom: 5px;
+  background: linear-gradient(135deg, #ffffff 0%, #b3e0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 10px 30px rgba(0, 183, 255, 0.5);
+}
+
+.circle-text span {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #80d4ff;
+  text-shadow: 0 4px 15px rgba(0, 183, 255, 0.4);
+}
+
+.circle-text small {
+  font-size: 14px;
+  color: #b3e0ff;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+/* GOAL INDICATOR */
+.goal-indicator {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #00d4ff, #0080ff);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 10px 30px rgba(0, 183, 255, 0.5);
+  z-index: 10;
+  white-space: nowrap;
+  border: 2px solid white;
+}
+
+/* PROGRESS BAR AROUND CIRCLE */
+.outer-progress {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #00d4ff 0%,
+    #0080ff 50%,
+    #0044ff 100%
+  );
+  mask: radial-gradient(transparent 140px, black 141px);
+  -webkit-mask: radial-gradient(transparent 140px, black 141px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* WATER EFFECTS */
+.water-wave {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 40%;
+  animation: waterWave 8s infinite linear;
+  z-index: 2;
+}
+
+.water-bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: bubbleFloat 4s infinite;
+}
+
+.message {
+  margin: 30px 0;
+  padding: 22px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, rgba(0, 183, 255, 0.15), transparent);
+  border: 3px solid rgba(0, 183, 255, 0.3);
+  font-size: 18px;
+  font-weight: 700;
+  color: #00d4ff;
+  animation: messagePulse 3s infinite;
+  text-shadow: 0 2px 10px rgba(0, 183, 255, 0.3);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.buttons button {
+  padding: 20px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #00a8ff 0%, #0052d4 100%);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 168, 255, 0.4);
+}
+
+.buttons button:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 168, 255, 0.7);
+}
+
+.reset {
+  padding: 18px;
+  border: 3px solid rgba(255, 107, 107, 0.3);
+  background: rgba(255, 107, 107, 0.15);
+  color: #ff6b6b;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+}
+
+.reset:hover {
+  background: rgba(255, 107, 107, 0.25);
+  border-color: rgba(255, 107, 107, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+}
+
+.back {
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.back:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes float {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.05); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%); }
+  100% { transform: translateX(100%) translateY(100%); }
+}
+
+@keyframes waterWave {
+  0% { transform: translateX(0) rotate(0deg); }
+  100% { transform: translateX(50%) rotate(180deg); }
+}
+
+@keyframes bubbleFloat {
+  0% {
+    transform: translateY(100%) scale(0.5);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-300px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes messagePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(0, 183, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 183, 255, 0.5);
+  }
+}
+
+@media (max-width: 550px) {
+  .water-card {
+    width: 95%;
+    padding: 40px 25px;
+  }
+  
+  .circle-scale-container {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .circle-text strong {
+    font-size: 60px;
+  }
+  
+  h2 {
+    font-size: 36px;
+  }
+  
+  .buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .scale-line.major::after,
+  .scale-line.major::before {
+    font-size: 12px;
+    left: -30px;
+    right: -30px;
+  }
+}

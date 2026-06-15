@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vision Board</title>
+    <link rel="stylesheet" href="style3.css" />
+
+    <style>
+        .hidden { display: none !important; }
+
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Vision Board</h1>
+
+    <div class="vb-toolbar">
+        <button id="addNoteBtn">+ Post It</button>
+        <button id="addImageBtn">+ Slika</button>
+        <button id="addQuoteBtn">+ Citat</button>
+        <button id="saveBtn">Snimi</button>
+        <button id="clearBtn">Očisti ploču</button>
+
+        <!-- Dugme za slanje maila -->
+        <button id="emailBtn" style="background:#3498db; color:white;">Pošalji mailom</button>
+    </div>
+
+    <div id="board"></div>
+
+    <footer>
+        <p>Web programiranje 2025 © Internacionalna poslovno-informaciona akademija Tuzla</p>
+    </footer>
+
+    <!-- EMAIL MODAL - mora imati hidden -->
+    <div id="emailModal" class="modal hidden">
+        <div style="
+            background: white; padding: 20px; width: 300px; border-radius: 10px;
+            text-align: center; color: black;">
+            
+            <h3>Pošalji Vision Board na email</h3>
+
+            <input type="email" id="emailInput" placeholder="Unesite email..." style="
+                width: 90%; padding: 10px; margin-top: 10px; border: 1px solid #ccc;
+                border-radius: 5px;">
+
+            <div style="margin-top: 20px;">
+                <button id="emailSend" style="
+                    padding: 8px 15px; margin-right: 10px; background: #3498db;
+                    color: white; border: none; border-radius: 5px;">Pošalji</button>
+
+                <button id="emailCancel" style="
+                    padding: 8px 15px; background: #777; color: white;
+                    border: none; border-radius: 5px;">Poništi</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript.js"></script>
+
+    <script>
+    // EMAIL FUNKCIJE — radi ispravno
+    const emailBtn = document.getElementById("emailBtn");
+    const emailModal = document.getElementById("emailModal");
+    const emailSend = document.getElementById("emailSend");
+    const emailCancel = document.getElementById("emailCancel");
+    const emailInput = document.getElementById("emailInput");
+
+    // OTVARANJE popravljeno
+    emailBtn.addEventListener("click", () => {
+        emailModal.classList.remove("hidden");
+    });
+
+    // ZATVARANJE
+    emailCancel.addEventListener("click", () => {
+        emailModal.classList.add("hidden");
+        emailInput.value = "";
+    });
+
+    // SLANJE MAILA
+    emailSend.addEventListener("click", () => {
+        const email = emailInput.value.trim();
+        if (email === "") {
+            alert("Unesite email adresu!");
+            return;
+        }
+
+        let subject = "Moj Vision Board";
+        let body = "Ovo je vaš Vision Board iz Student Fun Zone aplikacije.";
+
+        window.location.href =
+            `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        emailModal.classList.add("hidden");
+        emailInput.value = "";
+    });
+    </script>
+
+</body>
+</html>

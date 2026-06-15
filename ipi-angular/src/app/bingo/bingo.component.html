@@ -1,0 +1,45 @@
+<div class="bingo-page">
+  <div class="bingo-container">
+    <header>
+      <h1>🎮 IT Bingo Kviz</h1>
+    </header>
+
+    <div class="question-box">
+      <h3>Pitanje za vas:</h3>
+      <p>{{ currentQuestionText }}</p>
+      <button *ngIf="!gameStarted" class="btn" (click)="initGame()">🚀 Započni igru</button>
+    </div>
+
+    <div class="bingo-board" *ngIf="gameStarted">
+      <div
+        *ngFor="let term of cellTerms; let i = index"
+        class="bingo-cell"
+        [class.matched]="boardState[i]"
+        [class.free-space]="i === 12"
+        [class.wrong]="wrongIndex === i"
+        (click)="handleCellClick(i)"
+      >
+        {{ term }}
+      </div>
+    </div>
+
+    <div class="stats-zone">
+      <div class="stat-card">
+        <span class="stat-label">Tačni odgovori:</span>
+        <span class="stat-value">{{ score }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Preostalo pitanja:</span>
+        <span class="stat-value">{{ remaining }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" *ngIf="showWinOverlay">
+    <div class="popup-box">
+      <h2>🎉 BINGO! 🎉</h2>
+      <p>Čestitamo! Uspješno ste povezali liniju od 5 tačnih IT pojmova!</p>
+      <button class="btn" (click)="restartGame()">Igraj ponovo</button>
+    </div>
+  </div>
+</div>

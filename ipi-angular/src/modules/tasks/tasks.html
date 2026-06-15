@@ -1,0 +1,62 @@
+<div class="tasks-wrapper">
+
+  <div class="tasks-card">
+
+    <h2>✅ Task / Project Planner</h2>
+    <p class="subtitle">
+      Organizuj zadatke po projektima i prioritetima.
+    </p>
+
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="percent()"></div>
+      </div>
+      <div class="progress-text">
+        <strong>{{ percent() }}%</strong>
+        <span>{{ completedCount() }} / {{ tasks.length }} zadataka</span>
+      </div>
+    </div>
+
+    <p class="message">{{ message }}</p>
+
+    <div class="add-form">
+      <input type="text" placeholder="Naziv zadatka" [(ngModel)]="newTitle" />
+      <input type="text" placeholder="Projekat (npr. Diploma)" [(ngModel)]="newProject" />
+      <select [(ngModel)]="newPriority">
+        <option *ngFor="let p of priorities" [value]="p">{{ p }}</option>
+      </select>
+      <button class="add-btn" (click)="addTask()">➕ Dodaj zadatak</button>
+    </div>
+
+    <div class="task-list" *ngIf="tasks.length > 0">
+      <div class="task-item" *ngFor="let t of tasks" [class.done]="t.done">
+        <div class="task-info" (click)="toggleDone(t)">
+          <span class="check">{{ t.done ? '✅' : '⬜' }}</span>
+          <div class="task-text">
+            <strong>{{ t.title }}</strong>
+            <span>{{ t.project }}</span>
+          </div>
+          <span class="priority" [ngClass]="priorityClass(t.priority)">{{ t.priority }}</span>
+        </div>
+        <button class="remove-btn" (click)="removeTask(t)">✕</button>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="tasks.length === 0">
+      <div class="empty-icon">🗂️</div>
+      <p>Još nema zadataka ni projekata.</p>
+      <small>Dodajte prvi zadatak iznad</small>
+    </div>
+
+    <div class="action-row" *ngIf="tasks.length > 0">
+      <button class="reset" (click)="clearCompleted()">Obriši završene</button>
+      <button class="reset" (click)="clearAll()">Obriši sve</button>
+    </div>
+
+    <button class="back" routerLink="/dashboard">
+      ⬅ Nazad na dashboard
+    </button>
+
+  </div>
+
+</div>

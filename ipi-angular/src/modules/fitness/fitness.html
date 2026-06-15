@@ -1,0 +1,64 @@
+<div class="fitness-wrapper">
+
+  <div class="fitness-card">
+
+    <h2>🧘 Yoga / Fitness Planner</h2>
+    <p class="subtitle">
+      Planiraj svoje vježbe i pratite dnevnu aktivnost.
+    </p>
+
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="percent()"></div>
+      </div>
+      <div class="progress-text">
+        <strong>{{ percent() }}%</strong>
+        <span>{{ completedMinutes() }} / {{ dailyGoalMinutes }} min</span>
+      </div>
+    </div>
+
+    <p class="message">{{ message }}</p>
+
+    <div class="goal-input">
+      <label>Dnevni cilj (min)</label>
+      <input type="number" min="0" [(ngModel)]="dailyGoalMinutes" (change)="save()" />
+    </div>
+
+    <div class="add-form">
+      <input type="text" placeholder="Naziv vježbe (npr. Jutarnja joga)" [(ngModel)]="newName" />
+      <select [(ngModel)]="newType">
+        <option *ngFor="let t of types" [value]="t">{{ t }}</option>
+      </select>
+      <input type="number" min="5" step="5" placeholder="Min" [(ngModel)]="newDuration" />
+      <button class="add-btn" (click)="addWorkout()">➕ Dodaj vježbu</button>
+    </div>
+
+    <div class="task-list" *ngIf="workouts.length > 0">
+      <div class="task-item" *ngFor="let w of workouts" [class.done]="w.done">
+        <div class="task-info" (click)="toggleDone(w)">
+          <span class="check">{{ w.done ? '✅' : '⬜' }}</span>
+          <div class="task-text">
+            <strong>{{ w.name }}</strong>
+            <span>{{ w.type }}</span>
+          </div>
+          <span class="duration">{{ w.duration }} min</span>
+        </div>
+        <button class="remove-btn" (click)="removeWorkout(w)">✕</button>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="workouts.length === 0">
+      <div class="empty-icon">🤸</div>
+      <p>Još nema planiranih vježbi.</p>
+      <small>Dodajte prvu vježbu iznad</small>
+    </div>
+
+    <button class="reset" (click)="clearAll()" *ngIf="workouts.length > 0">Obriši sve vježbe</button>
+
+    <button class="back" routerLink="/dashboard">
+      ⬅ Nazad na dashboard
+    </button>
+
+  </div>
+
+</div>

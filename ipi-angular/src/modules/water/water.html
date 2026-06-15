@@ -1,0 +1,57 @@
+<div class="water-wrapper">
+
+  <div class="water-card">
+
+    <h2>💧 Water Intake Tracker</h2>
+    <p class="subtitle">
+      Prati dnevni unos vode i ostani hidriran cijeli dan.
+    </p>
+
+    <div class="circle-scale-container">
+      
+      <div class="outer-progress"></div>
+
+      <div class="circle">
+        
+        <div class="water-fill" [style.height.%]="percent()">
+          <div class="water-wave"></div>
+        </div>
+        
+        <div class="current-level" [style.top.%]="100 - percent()">
+          {{ current }} ml
+        </div>
+
+        <div class="water-bubbles">
+          <div class="bubble" style="left: 30%; width: 8px; height: 8px; animation-delay: 0s;"></div>
+          <div class="bubble" style="left: 60%; width: 12px; height: 12px; animation-delay: 1s;"></div>
+          <div class="bubble" style="left: 45%; width: 6px; height: 6px; animation-delay: 2s;"></div>
+          <div class="bubble" style="left: 70%; width: 10px; height: 10px; animation-delay: 3s;"></div>
+        </div>
+
+        <div class="circle-text">
+          <strong>{{ percent() }}%</strong>
+          <span>{{ current }} / {{ dailyGoal }} ml</span>
+          <small>Dnevni cilj</small>
+        </div>
+
+      </div>
+
+    </div>
+
+    <p class="message">{{ message }}</p>
+
+    <div class="buttons">
+      <button (click)="add(200)">+200 ml</button>
+      <button (click)="add(300)">+300 ml</button>
+      <button (click)="add(500)">+500 ml</button>
+    </div>
+
+    <button class="reset" (click)="reset()">Resetuj dan</button>
+
+    <button class="back" routerLink="/dashboard">
+      ⬅ Nazad na dashboard
+    </button>
+
+  </div>
+
+</div>

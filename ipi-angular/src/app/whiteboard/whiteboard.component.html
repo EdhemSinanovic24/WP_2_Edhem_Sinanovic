@@ -1,0 +1,50 @@
+<div class="whiteboard-page">
+  <h1>Interaktivni Whiteboard</h1>
+
+  <!-- Alatna traka sa kontrolama -->
+  <div class="toolbar">
+    <label for="colorPicker">Boja: </label>
+    <input
+      type="color"
+      id="colorPicker"
+      [(ngModel)]="currentColor"
+      (input)="onColorChange()"
+    >
+
+    <label for="brushSize">Četka: </label>
+    <input
+      type="range"
+      id="brushSize"
+      min="1"
+      max="20"
+      [(ngModel)]="brushSize"
+    >
+
+    <button
+      [class.active-eraser]="isErasing"
+      (click)="toggleEraser()"
+    >{{ isErasing ? 'Olovka' : 'Briši' }}</button>
+
+    <button id="clearBtn" (click)="clearBoard()">Čista ploča</button>
+    <button id="saveBtn" (click)="saveBoard()">Snimi</button>
+  </div>
+
+  <!-- Prostor za crtanje -->
+  <canvas
+    #board
+    width="900"
+    height="500"
+    (mousedown)="startDraw($event)"
+    (mouseup)="endDraw()"
+    (mousemove)="draw($event)"
+    (mouseleave)="endDraw()"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
+    (touchmove)="onTouchMove($event)"
+  ></canvas>
+
+  <footer>
+    Web programiranje 2025/2026<br>
+    Internacionalna poslovno-informaciona akademija Tuzla
+  </footer>
+</div>

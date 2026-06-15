@@ -1,0 +1,82 @@
+<div class="finance-wrapper">
+
+  <div class="finance-card">
+
+    <h2>💰 Finance Mini-Tracker</h2>
+    <p class="subtitle">
+      Pratite prihode, troškove i mjesečni budžet.
+    </p>
+
+    <div class="balance-row">
+      <div class="balance-box income">
+        <span class="label">Prihodi</span>
+        <strong>{{ totalIncome() }} KM</strong>
+      </div>
+      <div class="balance-box expense">
+        <span class="label">Troškovi</span>
+        <strong>{{ totalExpense() }} KM</strong>
+      </div>
+      <div class="balance-box balance" [class.negative]="balance() < 0">
+        <span class="label">Balans</span>
+        <strong>{{ balance() }} KM</strong>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="budgetPercent()" [class.over]="budgetPercent() >= 100"></div>
+      </div>
+      <div class="progress-text">
+        <strong>{{ budgetPercent() }}%</strong>
+        <span>{{ totalExpense() }} / {{ monthlyBudget }} KM budžeta</span>
+      </div>
+    </div>
+
+    <p class="message">{{ message }}</p>
+
+    <div class="goal-input">
+      <label>Mjesečni budžet (KM)</label>
+      <input type="number" min="0" [(ngModel)]="monthlyBudget" (change)="save()" />
+    </div>
+
+    <div class="add-form">
+      <input type="text" placeholder="Naziv (npr. Plata, Kafa)" [(ngModel)]="newTitle" />
+      <input type="number" min="0" step="0.5" placeholder="Iznos KM" [(ngModel)]="newAmount" />
+      <select [(ngModel)]="newType">
+        <option value="income">Prihod</option>
+        <option value="expense">Trošak</option>
+      </select>
+      <button class="add-btn" (click)="addTransaction()">➕ Dodaj stavku</button>
+    </div>
+
+    <div class="task-list" *ngIf="transactions.length > 0">
+      <div class="task-item" *ngFor="let t of transactions" [class.income]="t.type === 'income'" [class.expense]="t.type === 'expense'">
+        <div class="task-info">
+          <span class="check">{{ t.type === 'income' ? '⬆️' : '⬇️' }}</span>
+          <div class="task-text">
+            <strong>{{ t.title }}</strong>
+            <span>{{ t.type === 'income' ? 'Prihod' : 'Trošak' }}</span>
+          </div>
+          <span class="amount" [class.income-amt]="t.type === 'income'" [class.expense-amt]="t.type === 'expense'">
+            {{ t.type === 'income' ? '+' : '-' }}{{ t.amount }} KM
+          </span>
+        </div>
+        <button class="remove-btn" (click)="removeTransaction(t)">✕</button>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="transactions.length === 0">
+      <div class="empty-icon">🧾</div>
+      <p>Još nema unesenih transakcija.</p>
+      <small>Dodajte prvi prihod ili trošak iznad</small>
+    </div>
+
+    <button class="reset" (click)="clearAll()" *ngIf="transactions.length > 0">Obriši sve transakcije</button>
+
+    <button class="back" routerLink="/dashboard">
+      ⬅ Nazad na dashboard
+    </button>
+
+  </div>
+
+</div>

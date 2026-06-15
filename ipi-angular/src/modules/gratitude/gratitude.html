@@ -1,0 +1,51 @@
+<div class="gratitude-wrapper">
+
+  <div class="gratitude-card">
+
+    <h2>🙏 Gratitude Journal</h2>
+    <p class="subtitle">
+      Zapiši na čemu si zahvalan/na svaki dan i izgradi pozitivnu rutinu.
+    </p>
+
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="percent()"></div>
+      </div>
+      <div class="progress-text">
+        <strong>{{ percent() }}%</strong>
+        <span>{{ todaysEntries().length }} / {{ dailyGoal }} danas</span>
+      </div>
+    </div>
+
+    <p class="message">{{ message }}</p>
+
+    <div class="add-form">
+      <textarea rows="3" placeholder="Danas sam zahvalan/na za..." [(ngModel)]="newEntry"></textarea>
+      <button class="add-btn" (click)="addEntry()">➕ Sačuvaj zapis</button>
+    </div>
+
+    <div class="entry-list" *ngIf="entries.length > 0">
+      <div class="entry-item" *ngFor="let e of entries">
+        <div class="entry-text">
+          <p>{{ e.text }}</p>
+          <span class="entry-date">{{ e.date }}</span>
+        </div>
+        <button class="remove-btn" (click)="removeEntry(e)">✕</button>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="entries.length === 0">
+      <div class="empty-icon">🌸</div>
+      <p>Još nema zapisa zahvalnosti.</p>
+      <small>Napišite svoj prvi zapis iznad</small>
+    </div>
+
+    <button class="reset" (click)="clearAll()" *ngIf="entries.length > 0">Obriši sve zapise</button>
+
+    <button class="back" routerLink="/dashboard">
+      ⬅ Nazad na dashboard
+    </button>
+
+  </div>
+
+</div>

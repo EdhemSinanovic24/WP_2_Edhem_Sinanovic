@@ -1,0 +1,59 @@
+<div class="vb-page">
+  <div class="vb-wrapper">
+    <header class="vb-header">
+      <div class="title-zone">
+        <h1>📌 Studentski Vision Board</h1>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-note" (click)="addNote()">📝 Dodaj bilješku</button>
+        <button class="btn btn-image" (click)="toggleImagePopup()">🖼️ Dodaj sliku</button>
+        <button class="btn btn-quote" (click)="addQuote()">💬 Dodaj citat</button>
+        <button class="btn btn-clear" (click)="clearBoard()">🗑️ Očisti ploču</button>
+      </div>
+    </header>
+
+    <main class="vb-board">
+      <div
+        *ngFor="let item of items"
+        class="board-item"
+        [class.type-note]="item.type === 'note'"
+        [class.type-quote]="item.type === 'quote'"
+        [class.type-image]="item.type === 'image'"
+        [style.--rotation]="item.rotation"
+      >
+        <button class="delete-pin" (click)="deleteItem(item.id)">✕</button>
+
+        <img
+          *ngIf="item.type === 'image'"
+          class="board-img"
+          [src]="item.content"
+          (error)="onImageError(item)"
+        >
+
+        <p
+          *ngIf="item.type !== 'image'"
+          class="item-text"
+          contenteditable="true"
+          (blur)="onTextBlur(item, $event)"
+        >{{ item.content }}</p>
+
+        <div class="item-footer">📌 {{ item.date }}</div>
+      </div>
+    </main>
+  </div>
+
+  <div class="overlay" [class.visible]="showImageOverlay">
+    <div class="popup-box">
+      <h3>🖼️ Dodaj sliku na ploču</h3>
+      <p>Unesite ispravan URL (link) slike sa interneta.</p>
+      <div class="input-group">
+        <input type="url" [(ngModel)]="imageUrl" placeholder="https://example.com/slika.jpg" required>
+      </div>
+      <div class="popup-buttons">
+        <button class="btn btn-image" (click)="handleAddImage()">Dodaj</button>
+        <button class="btn btn-clear" (click)="toggleImagePopup()">Poništi</button>
+      </div>
+    </div>
+  </div>
+</div>
