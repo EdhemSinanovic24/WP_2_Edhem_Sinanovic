@@ -1,7 +1,7 @@
 # 🎓 WP_2_Edhem_Sinanovic - Personal Life Dashboard
 
 > **Web programiranje - Projekat 2**                     
-> Internacionalna poslovno-informaciona akademija Tuzla   
+> Internacionalna poslovno-informaciona akademija Tuzla    
 > Student: **Edhem Sinanovic** | Akademska godina: 2025/2026
 
 ---
