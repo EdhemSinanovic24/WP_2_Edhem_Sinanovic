@@ -1,6 +1,6 @@
-# 🎓 WP_2_Edhem_Sinanovic — Personal Life Dashboard
+# 🎓 WP_2_Edhem_Sinanovic - Personal Life Dashboard
 
-> **Web programiranje — Projekat 2**  
+> **Web programiranje - Projekat 2**  
 > Internacionalna poslovno-informaciona akademija Tuzla  
 > Student: **Edhem Sinanovic** | Akademska godina: 2025/2026
 
@@ -10,7 +10,7 @@
 
 Ovaj projekat predstavlja nadogradnju statičke web stranice **IPI Akademije** sa dinamičkom Angular aplikacijom. Projekat kombinuje klasičan HTML/CSS/JS pristup sa modernim Angular frameworkom, čime se demonstrira prelaz sa statičkog web dizajna na full-stack web development.
 
-Centralni dio projekta je **Personal Life Dashboard** — personalizovani korisnički dashboard koji omogućava praćenje svakodnevnih životnih navika, aktivnosti i produktivnosti.
+Centralni dio projekta je **Personal Life Dashboard** - personalizovani korisnički dashboard koji omogućava praćenje svakodnevnih životnih navika, aktivnosti i produktivnosti.
 
 ---
 
